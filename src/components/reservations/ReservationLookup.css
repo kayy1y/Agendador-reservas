@@ -1,0 +1,215 @@
+.modal-lookup {
+  max-width: 680px;
+}
+
+.lookup-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 1.25rem;
+}
+
+.lookup-icon-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--color-cream-light);
+  color: var(--color-copper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.25rem;
+}
+
+.lookup-error-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #FFF5F5;
+  color: var(--status-occupied-text);
+  border: 1px solid var(--status-occupied-border);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+}
+
+.lookup-success-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--status-available-bg);
+  color: var(--status-available-text);
+  border: 1px solid var(--status-available-border);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+}
+
+.lookup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.lookup-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.lookup-form-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-coffee-dark);
+}
+
+.lookup-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.found-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.found-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 1rem;
+}
+
+.found-title-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.found-code {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-coffee-dark);
+}
+
+.found-created {
+  font-size: 0.775rem;
+  color: var(--text-muted);
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.status-pill.status-confirmed {
+  background: var(--status-available-bg);
+  color: var(--status-available-text);
+  border: 1px solid var(--status-available-border);
+}
+
+.status-pill.status-cancelled {
+  background: var(--status-occupied-bg);
+  color: var(--status-occupied-text);
+  border: 1px solid var(--status-occupied-border);
+}
+
+.found-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+}
+
+.found-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.found-detail-item.full-span {
+  grid-column: span 2;
+}
+
+.detail-icon {
+  color: var(--color-copper);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.found-detail-item div {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.found-detail-item strong {
+  font-size: 0.95rem;
+  color: var(--color-coffee-dark);
+}
+
+.found-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.not-found-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  padding: 2rem 1rem;
+}
+
+.not-found-icon {
+  color: #9B2C2C;
+}
+
+.not-found-card h4 {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+}
+
+@media (max-width: 600px) {
+  .found-details-grid {
+    grid-template-columns: 1fr;
+  }
+  .found-detail-item.full-span {
+    grid-column: span 1;
+  }
+  .found-card-actions {
+    flex-direction: column;
+  }
+  .found-card-actions button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,198 @@
+.table-selector-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.btn-auto-select {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(184, 106, 50, 0.12);
+  border: 1px solid var(--color-copper);
+  color: var(--color-coffee-dark);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: var(--transition-fast);
+}
+
+.btn-auto-select:hover {
+  background: var(--color-copper);
+  color: #FFFFFF;
+}
+
+.area-tabs-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.area-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.area-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.area-tab-btn {
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: var(--color-cream-light);
+  color: var(--color-coffee-dark);
+  border: 1px solid var(--border-light);
+  transition: var(--transition-fast);
+}
+
+.area-tab-btn:hover {
+  border-color: var(--color-sand);
+}
+
+.area-tab-btn.active {
+  background: var(--color-wood);
+  color: var(--color-white-warm);
+  border-color: var(--color-wood);
+}
+
+.tables-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.table-card {
+  background: var(--color-white-warm);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  position: relative;
+}
+
+.table-card:hover:not(.disabled) {
+  border-color: var(--color-copper);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.table-card.selected {
+  background: #FFFDF9;
+  border: 2px solid var(--color-copper);
+  box-shadow: 0 6px 20px rgba(184, 106, 50, 0.2);
+}
+
+.table-card.disabled {
+  opacity: 0.55;
+  background: var(--status-disabled-bg);
+  border-color: var(--border-light);
+  cursor: not-allowed;
+}
+
+.table-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.area-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--color-cream-light);
+  color: var(--color-wood);
+  border: 1px solid var(--border-medium);
+}
+
+.selected-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-copper);
+}
+
+.table-name {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-coffee-dark);
+  margin: 0;
+}
+
+.table-capacity {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-copper);
+}
+
+.table-description {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  flex: 1;
+}
+
+.table-card-footer {
+  margin-top: 0.5rem;
+}
+
+.table-status-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.status-available {
+  background: var(--status-available-bg);
+  color: var(--status-available-text);
+  border: 1px solid var(--status-available-border);
+}
+
+.status-insufficient {
+  background: #FFF8E1;
+  color: #B78103;
+  border: 1px solid #FFE082;
+}
+
+.status-occupied {
+  background: var(--status-occupied-bg);
+  color: var(--status-occupied-text);
+  border: 1px solid var(--status-occupied-border);
+}
+
+.selected-table-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(184, 106, 50, 0.1);
+  border: 1px solid rgba(184, 106, 50, 0.25);
+  color: var(--color-coffee-dark);
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+}
