@@ -182,15 +182,25 @@
   color: var(--color-white-warm);
 }
 
-.hours-card span {
-  font-size: 0.875rem;
-  color: var(--color-sand);
+.hours-time {
+  font-size: 1rem !important;
+  font-weight: 700;
+  color: var(--color-white-warm) !important;
+  margin-top: 2px;
 }
 
 .kitchen-note {
-  font-size: 0.775rem !important;
-  color: var(--text-light-muted) !important;
+  font-size: 0.8rem !important;
+  color: var(--color-sand) !important;
   margin-top: 4px;
+}
+
+.hours-notice {
+  font-size: 0.775rem !important;
+  color: var(--color-copper-light) !important;
+  font-style: italic;
+  margin-top: 6px;
+  line-height: 1.35;
 }
 
 .footer-bottom {

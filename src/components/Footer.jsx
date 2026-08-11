@@ -1,5 +1,5 @@
 import React from 'react';
-import { UtensilsCrossed, MapPin, Phone, Clock, Mail, ExternalLink, Utensils } from 'lucide-react';
+import { UtensilsCrossed, MapPin, Phone, Clock, Mail, ExternalLink, Utensils, AlertCircle } from 'lucide-react';
 import { restaurantConfig } from '../config/restaurantConfig';
 import './Footer.css';
 
@@ -105,15 +105,16 @@ export const Footer = ({ onOpenMenu, onScrollToSection }) => {
             </ul>
           </div>
 
-          {/* Hours */}
+          {/* Hours Section */}
           <div className="footer-col">
             <h4 className="footer-col-title">Horarios de Atención</h4>
             <div className="hours-card">
               <Clock size={20} className="hours-icon" />
               <div>
                 <strong>Lunes a Domingo</strong>
-                <span>12:00 PM – 10:30 PM</span>
+                <span className="hours-time">7:00 AM – 10:00 PM</span>
                 <span className="kitchen-note">Cocina abierta continuamente</span>
+                <span className="hours-notice">{restaurantConfig.openingHoursNotice}</span>
               </div>
             </div>
           </div>

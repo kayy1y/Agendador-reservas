@@ -1,6 +1,6 @@
 export const reservationConfig = {
-  openingTime: "12:00",
-  closingTime: "22:30",
+  openingTime: "07:00",
+  closingTime: "22:00",
   slotIntervalMinutes: 30,
   defaultReservationDuration: 90,
   maxAdvanceDays: 60,
