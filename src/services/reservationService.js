@@ -160,7 +160,7 @@ export const reservationService = {
     }
   },
 
-  // Check table availability querying REAL Supabase database
+  // Check table availability querying REAL Supabase database (EXACT OVERLAP PREVENTION)
   checkTableAvailabilityAsync: async (tableId, dateStr, timeStr, durationMinutes = 90, excludeReservationId = null) => {
     if (!tableId || !dateStr || !timeStr) return false;
 
@@ -191,7 +191,7 @@ export const reservationService = {
 
         // Interval overlap test: max(start1, start2) < min(end1, end2)
         if (Math.max(newStart, exStart) < Math.min(newEnd, exEnd)) {
-          return false; // Conflict found!
+          return false; // Conflict found! Superposición detectada.
         }
       }
 
@@ -311,11 +311,11 @@ export const reservationService = {
     return suggestions.slice(0, 4).map(s => s.time);
   },
 
-  // CREATE RESERVATION DIRECTLY IN SUPABASE DATABASE (REAL PERSISTENCE)
+  // CREATE RESERVATION DIRECTLY IN SUPABASE DATABASE (REAL PERSISTENCE & OVERLAP CHECK)
   createReservation: async (data) => {
     const { customer, reservation, specialRequest = '', occasion = 'Ninguna' } = data;
 
-    // 1. Pre-insert availability check on Supabase to prevent race conditions
+    // 1. Pre-insert availability check on Supabase to prevent overlaps & race conditions
     const isFree = await reservationService.checkTableAvailabilityAsync(
       reservation.tableId,
       reservation.date,
@@ -324,7 +324,7 @@ export const reservationService = {
     );
 
     if (!isFree) {
-      throw new Error('La mesa seleccionada ha sido reservada por otro cliente en este mismo horario.');
+      throw new Error('La mesa seleccionada ya se encuentra reservada en ese horario. Por favor selecciona otro horario o mesa.');
     }
 
     // 2. Build payload matching Supabase public.reservas schema
@@ -339,6 +339,9 @@ export const reservationService = {
 
     if (error) {
       console.error('Error insertando reserva en Supabase:', error);
+      if (error.code === '42501' || error.message?.includes('row-level security') || error.message?.includes('policy')) {
+        throw new Error('Error RLS en Supabase: Debes ejecutar la política RLS en el SQL Editor de Supabase (ver instrucciones de activación RLS).');
+      }
       throw new Error(`Error al conectar con la base de datos Supabase: ${error.message || 'Verifica la conexión'}`);
     }
 
