@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { X, Save, AlertCircle, Calendar, Clock, Users, Armchair, User, Phone, Mail } from 'lucide-react';
+import { X, Save, AlertCircle } from 'lucide-react';
 import { reservationService, getTodayString, generateTimeSlots, formatTime12h } from '../../services/reservationService';
-import { restaurantConfig } from '../../config/restaurantConfig';
 import { reservationConfig } from '../../config/reservationConfig';
 import './ReservationEditor.css';
 
@@ -26,13 +25,12 @@ export const ReservationEditor = ({
   const [errorMsg, setErrorMsg] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Available tables for selected date, time, and guests (ignoring current reservation ID)
   const availableTables = reservationService.getAvailableTables(
     date,
     time,
     guests,
     reservationConfig.defaultReservationDuration,
-    reservation.id
+    reservation.dbId || reservation.id
   );
 
   const timeSlots = generateTimeSlots();
@@ -55,7 +53,7 @@ export const ReservationEditor = ({
     setIsSubmitting(true);
 
     try {
-      const updated = reservationService.updateReservation(reservation.id, {
+      const updated = await reservationService.updateReservation(reservation.dbId || reservation.id, {
         customer: { name, phone, email },
         reservation: {
           date,
@@ -67,11 +65,11 @@ export const ReservationEditor = ({
         occasion
       });
 
-      await new Promise(resolve => setTimeout(resolve, 400));
       onReservationUpdated(updated);
       onClose();
     } catch (err) {
-      setErrorMsg(err.message || 'Error al actualizar la reserva.');
+      console.error('Error actualizando reserva:', err);
+      setErrorMsg(err.message || 'Error al actualizar la reserva en Supabase.');
     } finally {
       setIsSubmitting(false);
     }

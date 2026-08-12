@@ -13,9 +13,8 @@ import {
   XCircle, 
   CheckCircle2, 
   AlertCircle, 
-  Info,
-  MessageSquare,
-  PartyPopper
+  PartyPopper,
+  MessageSquare
 } from 'lucide-react';
 import { reservationService, formatDateSpanish, formatTime12h } from '../../services/reservationService';
 import { ReservationEditor } from './ReservationEditor';
@@ -27,6 +26,7 @@ export const ReservationLookup = ({ isOpen, onClose }) => {
   const [phone, setPhone] = useState('');
   const [foundReservation, setFoundReservation] = useState(null);
   const [hasSearched, setHasSearched] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
   const [searchError, setSearchError] = useState('');
 
   // Modals inside lookup
@@ -36,7 +36,7 @@ export const ReservationLookup = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
     setSearchError('');
     setActionSuccessMsg('');
@@ -46,9 +46,17 @@ export const ReservationLookup = ({ isOpen, onClose }) => {
       return;
     }
 
-    const result = reservationService.getReservationByCodeAndPhone(code, phone);
-    setFoundReservation(result);
-    setHasSearched(true);
+    setIsSearching(true);
+    try {
+      // Lookup from Supabase database
+      const result = await reservationService.getReservationByCodeAndPhoneAsync(code, phone);
+      setFoundReservation(result);
+      setHasSearched(true);
+    } catch (err) {
+      setSearchError('Error al buscar la reserva en Supabase. Intenta nuevamente.');
+    } finally {
+      setIsSearching(false);
+    }
   };
 
   const handleResetSearch = () => {
@@ -60,21 +68,22 @@ export const ReservationLookup = ({ isOpen, onClose }) => {
     setActionSuccessMsg('');
   };
 
-  const handleConfirmCancel = () => {
+  const handleConfirmCancel = async () => {
     if (!foundReservation) return;
     try {
-      const cancelled = reservationService.cancelReservation(foundReservation.id);
+      const targetId = foundReservation.dbId || foundReservation.id;
+      const cancelled = await reservationService.cancelReservation(targetId);
       setFoundReservation(cancelled);
       setIsCancelModalOpen(false);
-      setActionSuccessMsg('La reserva ha sido cancelada con éxito. La mesa ha quedado liberada.');
+      setActionSuccessMsg('La reserva ha sido cancelada con éxito en la base de datos. La mesa ha quedado liberada.');
     } catch (err) {
-      setSearchError(err.message || 'Error al cancelar la reserva.');
+      setSearchError(err.message || 'Error al cancelar la reserva en Supabase.');
     }
   };
 
   const handleReservationUpdated = (updated) => {
     setFoundReservation(updated);
-    setActionSuccessMsg('Reserva actualizada correctamente con tus nuevos datos.');
+    setActionSuccessMsg('Reserva actualizada correctamente en Supabase.');
   };
 
   return (
@@ -145,9 +154,9 @@ export const ReservationLookup = ({ isOpen, onClose }) => {
               <button type="button" className="btn-secondary" onClick={onClose}>
                 Cerrar
               </button>
-              <button type="submit" className="btn-copper">
+              <button type="submit" className="btn-copper" disabled={isSearching}>
                 <Search size={18} />
-                <span>Buscar reserva</span>
+                <span>{isSearching ? 'Buscando en Supabase...' : 'Buscar reserva'}</span>
               </button>
             </div>
           </form>

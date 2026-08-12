@@ -95,7 +95,8 @@ export const ReservationWizard = ({ onOpenLookup }) => {
     setStepError('');
 
     try {
-      const created = reservationService.createReservation({
+      // Create reservation asynchronously in Supabase
+      const created = await reservationService.createReservation({
         customer: customerData,
         reservation: {
           date: selectedDate,
@@ -107,12 +108,11 @@ export const ReservationWizard = ({ onOpenLookup }) => {
         occasion: customerData.occasion
       });
 
-      await new Promise(resolve => setTimeout(resolve, 600));
-
       setConfirmedReservation(created);
       setCurrentStep(5);
     } catch (err) {
-      setStepError(err.message || 'Ocurrió un error al procesar tu reserva. Intenta de nuevo.');
+      console.error('Error al confirmar reserva:', err);
+      setStepError(err.message || 'Ocurrió un error al procesar tu reserva en Supabase. Intenta de nuevo.');
     } finally {
       setIsSubmitting(false);
     }
