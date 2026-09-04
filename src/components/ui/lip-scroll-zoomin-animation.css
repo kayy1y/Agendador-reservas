@@ -1,0 +1,242 @@
+.lip-root {
+  width: 100%;
+  background:
+    linear-gradient(180deg, #f7f3ed 0%, #f2e5d4 34%, #f8f4ee 100%);
+  color: #1e140e;
+  overflow: hidden;
+}
+
+.lip-intro,
+.lip-outro {
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.25rem 1.5rem 1.5rem;
+}
+
+.lip-copy-shell {
+  width: min(960px, 100%);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.lip-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.95rem;
+  border: 1px solid rgba(74, 48, 34, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 252, 247, 0.72);
+  color: var(--color-copper);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+.lip-title {
+  font-family: var(--font-body);
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  color: #1e140e;
+  margin-bottom: 1.25rem;
+}
+
+.lip-subtitle {
+  max-width: 760px;
+  margin: 0 auto;
+  color: rgba(30, 20, 14, 0.82);
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 2vw, 1.05rem);
+  font-weight: 700;
+  line-height: 1.85;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.lip-accent {
+  color: var(--color-copper);
+}
+
+.lip-scroll-stage {
+  position: relative;
+  min-height: 360vh;
+}
+
+.lip-pin {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at center, rgba(246, 240, 231, 0.9) 0%, rgba(247, 243, 237, 0.96) 38%, rgba(232, 218, 198, 0.96) 100%);
+  isolation: isolate;
+}
+
+.lip-corners {
+  position: absolute;
+  z-index: 30;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+.lip-corners::before,
+.lip-corners::after {
+  content: '';
+  position: absolute;
+  background: rgba(30, 20, 14, 0.82);
+}
+
+.lip-corner-top-left {
+  top: 14px;
+  left: 14px;
+}
+
+.lip-corner-top-left::before {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+}
+
+.lip-corner-top-left::after {
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+}
+
+.lip-corner-top-right {
+  top: 14px;
+  right: 14px;
+}
+
+.lip-corner-top-right::before {
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+}
+
+.lip-corner-top-right::after {
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+}
+
+.lip-corner-bottom-left {
+  bottom: 14px;
+  left: 14px;
+}
+
+.lip-corner-bottom-left::before {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+}
+
+.lip-corner-bottom-left::after {
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+}
+
+.lip-corner-bottom-right {
+  right: 14px;
+  bottom: 14px;
+}
+
+.lip-corner-bottom-right::before {
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+}
+
+.lip-corner-bottom-right::after {
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  height: 100%;
+}
+
+.lip-watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.lip-watermark span {
+  font-family: var(--font-body);
+  font-size: clamp(4rem, 18vw, 16rem);
+  font-weight: 900;
+  letter-spacing: -0.08em;
+  text-transform: uppercase;
+  color: #1e140e;
+}
+
+.lip-video-shell {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lip-mask-layer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-mask-position: 50% 50%;
+  mask-position: 50% 50%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: var(--maskW, 420px);
+  mask-size: var(--maskW, 420px);
+  transition: mask-size 0.04s linear, -webkit-mask-size 0.04s linear;
+}
+
+.lip-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+  background: #000;
+  transform-origin: 50% 50%;
+}
+
+@media (max-width: 767px) {
+  .lip-intro,
+  .lip-outro {
+    min-height: 72vh;
+    padding: 4rem 1.25rem;
+  }
+
+  .lip-subtitle {
+    letter-spacing: 0.1em;
+    line-height: 1.75;
+  }
+}

@@ -1,0 +1,36 @@
+.gallery-section {
+  padding: 4.5rem 0 5.5rem;
+  background:
+    linear-gradient(180deg, var(--bg-main) 0%, #f9f5ef 100%);
+}
+
+.gallery-intro {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.gallery-chips {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.gallery-chips span {
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(184, 106, 50, 0.18);
+  background: rgba(255, 252, 247, 0.78);
+  color: var(--color-coffee);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .gallery-section {
+    padding: 3.5rem 0 4rem;
+  }
+}

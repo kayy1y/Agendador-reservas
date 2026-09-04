@@ -1,0 +1,134 @@
+.date-selector-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.selector-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.selector-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-coffee-dark);
+}
+
+.selector-icon {
+  color: var(--color-copper);
+}
+
+.selector-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.quick-dates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 0.75rem;
+}
+
+.quick-date-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.5rem;
+  background: var(--color-white-warm);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+  transition: var(--transition-normal);
+}
+
+.quick-date-card:hover {
+  border-color: var(--color-sand);
+  background: var(--color-cream-light);
+  transform: translateY(-2px);
+}
+
+.quick-date-card.selected {
+  background: var(--color-wood);
+  border-color: var(--color-copper);
+  box-shadow: 0 4px 14px rgba(74, 48, 34, 0.25);
+}
+
+.quick-date-card.selected .qd-label,
+.quick-date-card.selected .qd-day,
+.quick-date-card.selected .qd-month {
+  color: var(--color-white-warm);
+}
+
+.qd-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.qd-day {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-coffee-dark);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.qd-month {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-transform: capitalize;
+}
+
+.custom-date-picker-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--bg-card-alt);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--border-medium);
+  flex-wrap: wrap;
+}
+
+.date-input-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-coffee-dark);
+}
+
+.date-input-wrapper {
+  flex: 1;
+  min-width: 200px;
+}
+
+.lavid-date-input {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-coffee-dark);
+  background: var(--color-white-warm);
+  border-color: var(--border-medium);
+}
+
+.selected-date-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(184, 106, 50, 0.1);
+  border: 1px solid rgba(184, 106, 50, 0.25);
+  color: var(--color-coffee-dark);
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+}
